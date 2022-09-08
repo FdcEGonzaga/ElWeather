@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_framelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_200"
+            android:elevation="2dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/main_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/logo_elweather" />
+
+            <ImageView
+                android:id="@+id/main_menu"
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_baseline_menu" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/weather_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_100"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/main_country_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textSize="18sp"
+                    tools:text="@string/sample_weather_country" />
+
+                <TextView
+                    android:id="@+id/main_weather_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    tools:text="@string/sample_weather_type" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <TextView
+                        android:id="@+id/main_current_maxTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:textColor="@color/teal_700"
+                        android:textSize="90sp"
+                        android:tooltipText="@string/sample_weather_highToolTip"
+                        tools:text="@string/sample_weather_highTemp" />
+
+                    <TextView
+                        android:id="@+id/main_current_minTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:textColor="@color/teal_700"
+                        android:textSize="30sp"
+                        android:tooltipText="@string/sample_weather_lowToolTip"
+                        tools:text="@string/sample_weather_lowTemp" />
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/main_current_icon"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    tools:src="@drawable/logo_elweather" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/main_current_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                tools:text="@string/sample_weather_today_date" />
+
+            <TextView
+                android:id="@+id/main_weather_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textSize="14sp"
+                tools:text="@string/sample_weather_description" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_weather_rv"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            tools:listitem="@layout/list_weather" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ElWeather</string>
+    <string name="app_api_key">58a6416b2fc55b29f277ba7f90f05cf7</string>
+    <string name="app_developer">Elmer Gonzaga</string>
+    <string name="sample_weather_description">Weather description is here...</string>
+    <string name="sample_weather_type">Clear</string>
+    <string name="sample_weather_country">Philippines, PH</string>
+    <string name="sample_weather_highTemp">78°</string>
+    <string name="sample_weather_lowTemp">64°</string>
+    <string name="sample_weather_today_date">Today Sept 7, 2022 12:00pm</string>
+    <string name="sample_weather_highToolTip">Highest Temperature</string>
+    <string name="sample_weather_lowToolTip">Lowest Temperature</string>
+    <string name="about_title_1">ABOUT THE APP</string>
+    <string name="app_about_text">ElWeather app provides detailed forecast using openweathermap.org API. The app provides the current temperature in the Philippines in Celsius. It provides sunny, cloudy, rainy and windy condition in every 3 hours interval within the range of 5 days. It helps to track weather forecasts in the Philippines and current conditions in real-time. Users can check on the weather anytime and anywhere using data or internet connection.</string>
+    <string name="about_title_3">ABOUT THE DEVELOPMENT</string>
+    <string name="app_development">ElWeather was developed with love for 7 hours and 30 minutes last September 3, 2022.</string>
+    <string name="about_title_2">ABOUT THE DEVELOPER</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
