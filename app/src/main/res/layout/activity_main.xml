@@ -26,6 +26,15 @@
                 android:layout_marginStart="10dp"
                 android:src="@drawable/logo_elweather" />
 
+
+            <ImageView
+                android:id="@+id/main_refresh"
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/main_menu"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_baseline_refresh" />
+
             <ImageView
                 android:id="@+id/main_menu"
                 android:layout_width="35dp"

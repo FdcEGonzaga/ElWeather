@@ -37,7 +37,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.NetworkInterface;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,13 +51,16 @@ public class MainActivity extends AppCompatActivity {
     private DailyWeatherReport dailyReport;
     private RecyclerView weatherRv;
     private TextView currentDate, currentMaxTemp, currentMinTemp, currentCountryName, currentWeatherType, currentWeatherDesc;
-    private ImageView currentIcon, mainMenu;
+    private ImageView currentIcon, mainRefresh, mainMenu;
     private String mWeatherType;
     private MainWeatherAdapter mAdapter;
     private ProgressDialog dialog;
     private Handler handler;
     private PopupMenu popupMenu;
     private static int DELAY = 2000;
+    private AppCompatActivity activity;
+    private FragmentManager fragmentManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
         castValues();
         setListeners();
+        loadData();
     }
 
-    private boolean isConnectedToInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED
-                || connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private void setListeners() {
-        AppCompatActivity activity = (AppCompatActivity) this;
-        FragmentManager fragmentManager = activity.getSupportFragmentManager();
-
+    private void loadData() {
         dialog.setMessage("Fetching recent weather reports.");
         dialog.show();
         handler.postDelayed(new Runnable() {
@@ -100,6 +90,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }, DELAY);
+    }
+
+    private void castValues() {
+        currentDate = findViewById(R.id.main_current_date);
+        currentMaxTemp = findViewById(R.id.main_current_maxTemp);
+        currentMinTemp = findViewById(R.id.main_current_minTemp);
+        currentIcon = findViewById(R.id.main_current_icon);
+        currentCountryName = findViewById(R.id.main_country_name);
+        currentWeatherType = findViewById(R.id.main_weather_type);
+        currentWeatherDesc = findViewById(R.id.main_weather_description);
+        mainRefresh = findViewById(R.id.main_refresh);
+        mainMenu = findViewById(R.id.main_menu);
+        weatherRv = findViewById(R.id.main_weather_rv);
+        weatherReportList = new ArrayList<>();
+
+        dialog = new ProgressDialog(this);
+        handler = new Handler();
+        activity = this;
+        fragmentManager = activity.getSupportFragmentManager();
+    }
+
+    private void setListeners() {
+        mainRefresh.setOnClickListener(v-> {
+            loadData();
+        });
 
         mainMenu.setOnClickListener(v -> {
             popupMenu = new PopupMenu(MainActivity.this, mainMenu);
@@ -123,23 +138,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void castValues() {
-        currentDate = findViewById(R.id.main_current_date);
-        currentMaxTemp = findViewById(R.id.main_current_maxTemp);
-        currentMinTemp = findViewById(R.id.main_current_minTemp);
-        currentIcon = findViewById(R.id.main_current_icon);
-        currentCountryName = findViewById(R.id.main_country_name);
-        currentWeatherType = findViewById(R.id.main_weather_type);
-        currentWeatherDesc = findViewById(R.id.main_weather_description);
-        mainMenu = findViewById(R.id.main_menu);
-        weatherRv = findViewById(R.id.main_weather_rv);
-        weatherReportList = new ArrayList<>();
-
-        dialog = new ProgressDialog(this);
-        handler = new Handler();
-    }
-
-    private void getWeatherData() {
+    public void getWeatherData() {
         final String url = URL_BASE + URL_UNITS + URL_PHIL_COORDINATES + API_KEY;
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -148,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             // get city object
+                            weatherReportList.clear();
                             JSONObject city = response.getJSONObject("city");
                             String cityName = city.getString("name");
                             String cityCountry = city.getString("country");
@@ -264,4 +264,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).create().show();
     }
+
+    private boolean isConnectedToInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED
+                || connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

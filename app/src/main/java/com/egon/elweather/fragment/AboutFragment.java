@@ -34,4 +34,5 @@ public class AboutFragment extends Fragment {
             getParentFragmentManager().beginTransaction().remove(this).commit();
         });
     }
+
 }
