@@ -55,6 +55,7 @@
                 android:id="@+id/title_about"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
                 android:text="@string/about_title_1"
                 android:textSize="14sp"
                 android:gravity="center"
@@ -74,6 +75,7 @@
                 android:id="@+id/title_reserved"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="@string/about_title_3"
                 android:textSize="14sp"
                 android:gravity="center"
@@ -82,7 +84,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="@string/app_development"
                 android:textSize="14sp"
                 android:gravity="center"/>
@@ -92,6 +94,7 @@
                 android:id="@+id/title_developer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="@string/about_title_2"
                 android:textSize="14sp"
                 android:gravity="center"
@@ -100,8 +103,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginTop ="10dp"
                 android:text="@string/app_developer"
+                android:textSize="14sp"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="(Software Engineer)"
                 android:textSize="14sp"
                 android:gravity="center"/>
         </LinearLayout>

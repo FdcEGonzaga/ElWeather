@@ -227,8 +227,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             currentDate.setText("Today " + reportOfTheDay.getFormattedDate());
-            currentMaxTemp.setText(reportOfTheDay.getCurrentTemp()+ "°");
-            currentMinTemp.setText(reportOfTheDay.getMinTemp() + "°");
+            currentMaxTemp.setText(convertToCelcius(reportOfTheDay.getCurrentTemp()) + "°");
+            currentMinTemp.setText(convertToCelcius(reportOfTheDay.getMinTemp()) + "°");
             currentCountryName.setText("" + reportOfTheDay.getCityName() + ", " + reportOfTheDay.getCityCountry());
             currentWeatherType.setText(mWeatherType);
             currentWeatherDesc.setText("There will be " + reportOfTheDay.getWeatherDesc() + " within the day");
@@ -241,6 +241,10 @@ public class MainActivity extends AppCompatActivity {
         weatherRv.setAdapter(mAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         weatherRv.setLayoutManager(layoutManager);
+    }
+
+    private int convertToCelcius(int Fahrenheit) {
+        return (Fahrenheit - 32) * 5 / 9;
     }
 
     @Override

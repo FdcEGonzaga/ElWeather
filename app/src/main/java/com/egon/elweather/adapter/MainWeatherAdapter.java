@@ -1,5 +1,6 @@
 package com.egon.elweather.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.egon.elweather.R;
+import com.egon.elweather.activity.MainActivity;
 import com.egon.elweather.model.DailyWeatherReport;
 
 import java.util.ArrayList;
@@ -74,9 +76,12 @@ public class MainWeatherAdapter extends RecyclerView.Adapter<MainWeatherAdapter.
 
             lwTitle.setText(report.getFormattedDate());
             lwDesc.setText(report.getWeatherDesc());
-            lwHighTemp.setText(report.getMaxTemp() + "°");
-            lwLowTemp.setText(report.getMinTemp() + "°");
-
+            lwHighTemp.setText(convertToCelcius(report.getMaxTemp()) + "°");
+            lwLowTemp.setText(convertToCelcius(report.getMinTemp()) + "°");
         }
+    }
+
+    private static int convertToCelcius(int Fahrenheit) {
+        return (Fahrenheit - 32) * 5 / 9;
     }
 }
